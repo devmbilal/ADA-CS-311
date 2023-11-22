@@ -40,3 +40,36 @@ int maxSubArrayBF(int nums[], int n) {
     }
     return maxSum;
 }
+
+int maxCrossing(int arr[], int low, int mid, int high) {
+    int leftSum = std::numeric_limits<int>::min();
+    int sum = 0;
+    int i = mid;
+
+    while (i >= low) {
+        sum += arr[i];
+        if (sum > leftSum)
+            leftSum = sum;
+        --i;
+    }
+
+    int rightSum = std::numeric_limits<int>::min();
+    sum = 0;
+    int j = mid + 1;
+
+   
+    while (j <= high) {
+        sum += arr[j];
+        if (sum > rightSum)
+            rightSum = sum;
+        ++j;
+    }
+
+    return leftSum + rightSum;
+}
+
+
+int maximum(int a, int b)
+{
+    return (a > b) ? a : b;
+}
