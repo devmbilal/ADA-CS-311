@@ -73,3 +73,17 @@ int maximum(int a, int b)
 {
     return (a > b) ? a : b;
 }
+
+int maxSubArrayDC(int A[], int low, int high)
+{
+    if (high == low)
+        return A[high];
+
+    int mid = (high + low) / 2;
+
+    int left = maxSubArrayDC(A, low, mid);
+    int right = maxSubArrayDC(A, mid + 1, high);
+    int  crossings = maxCrossing(A, low, mid, high);
+
+    return maximum(maximum(left, right), crossings);
+}
